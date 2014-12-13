@@ -1,0 +1,93 @@
+FORMAT: 1A
+
+# click counter v1
+The click counter service provides a *hosted counter* that can be queried and modified.
+
+# Group Click Counter
+
+## Counter [/counters/{id}]
+A single Counter object with all its details
+
++ Parameters
+    + id (required, number, `123`) ... Numeric `id` of the Counter to interact with.
+
+### Retrieve a counter [GET]
++ Response 200 (application/json)
+
+        { "id": 123, "value": "5" }
+
+### Delete a counter [DELETE]
++ Response 204
+
+    + Header
+
+            Content-Length: 0
+
+## Counter increment [/counters/{id}/increment]
+The resource for incrementing this counter
+
++ Parameters
+    + id (required, number, `123`) ... Numeric `id` of the Counter to interact with.
+
+### Increment a counter [POST]
++ Response 204
+
+    + Header
+
+            Content-Length: 0
+
+## Counter decrement [/counters/{id}/decrement]
+The resource for decrementing this counter
+
++ Parameters
+    + id (required, number, `123`) ... Numeric `id` of the Counter to interact with.
+
+### Decrement a counter [POST]
++ Response 204
+
+    + Header
+
+            Content-Length: 0
+
+## Counter reset [/counters/{id}/reset]
+The resource for resetting this counter
+
++ Parameters
+    + id (required, number, `123`) ... Numeric `id` of the Counter to interact with.
+
+### Reset a counter [POST]
++ Response 204
+
+    + Header
+
+            Content-Length: 0
+
+## Counter value [/counters/{id}/value]
+The current value of this counter
+
++ Parameters
+    + id (required, number, `123`) ... Numeric `id` of the Counter to interact with.
+
+### Retrieve a counter value [GET]
++ Response 200 (text/plain)
+
+        5
+
+## Counter value stream [/counters/{id}/stream]
+The value stream for this counter
+
++ Parameters
+    + id (required, number, `123`) ... Numeric `id` of the Counter to interact with.
+
+### Retrieve a counter value stream [GET]
++ Response 200 (text/plain)
+
+    + Header
+
+            Transfer-Encoding: chunked
+
+    + Body
+
+            5
+            6
+            7
