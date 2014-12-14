@@ -13,8 +13,13 @@ A single Counter object with all its details
 
 ### Retrieve a counter [GET]
 + Response 200 (application/json)
+    + Header
+    
+            Content-Length: 27
 
-        { "id": 123, "value": "5" }
+    + Body
+
+            { "id": 123, "value": "5" }
 
 ### Delete a counter [DELETE]
 + Response 204
