@@ -5,6 +5,16 @@ The click counter service provides a *hosted counter* that can be queried and mo
 
 # Group Click Counter
 
+## Counters [/counters]
+The collection of counters
+
+### Create a counter [POST]
++ Response 201
+    + Header
+    
+            Location: /counters/123
+            Content-Length: 0
+
 ## Counter [/counters/{id}]
 A single Counter object with all its details
 
@@ -15,11 +25,11 @@ A single Counter object with all its details
 + Response 200 (application/json)
     + Header
     
-            Content-Length: 27
+            Content-Length: 48
 
     + Body
 
-            { "id": 123, "value": "5" }
+            { "id": 123, "value": "3", "state": "counting" }
 
 ### Delete a counter [DELETE]
 + Response 204
@@ -34,10 +44,14 @@ The resource for incrementing this counter
     + id (required, number, `123`) ... Numeric `id` of the Counter to interact with.
 
 ### Increment a counter [POST]
-+ Response 204
++ Response 200 (application/json)
     + Header
+    
+            Content-Length: 44
 
-            Content-Length: 0
+    + Body
+
+            { "id": 123, "value": "5", "state": "full" }
 
 ## Counter decrement [/counters/{id}/decrement]
 The resource for decrementing this counter
@@ -46,10 +60,14 @@ The resource for decrementing this counter
     + id (required, number, `123`) ... Numeric `id` of the Counter to interact with.
 
 ### Decrement a counter [POST]
-+ Response 204
++ Response 409 (application/json)
     + Header
+    
+            Content-Length: 45
 
-            Content-Length: 0
+    + Body
+
+            { "id": 123, "value": "0", "state": "empty" }
 
 ## Counter reset [/counters/{id}/reset]
 The resource for resetting this counter
@@ -58,10 +76,14 @@ The resource for resetting this counter
     + id (required, number, `123`) ... Numeric `id` of the Counter to interact with.
 
 ### Reset a counter [POST]
-+ Response 204
++ Response 200 (application/json)
     + Header
+    
+            Content-Length: 45
 
-            Content-Length: 0
+    + Body
+
+            { "id": 123, "value": "0", "state": "empty" }
 
 ## Counter value [/counters/{id}/value]
 The current value of this counter
@@ -77,10 +99,10 @@ The current value of this counter
 
     + Body
     
-            5
+            3
 
 ## Counter value stream [/counters/{id}/stream]
-The value stream for this counter
+The event stream of this counter's values 
 
 + Parameters
     + id (required, number, `123`) ... Numeric `id` of the Counter to interact with.
@@ -93,7 +115,7 @@ The value stream for this counter
 
     + Body
 
-            5
-            6
-            7
-            8
+            0
+            1
+            2
+            3
