@@ -71,7 +71,13 @@ The current value of this counter
 ### Retrieve a counter value [GET]
 + Response 200 (text/plain)
 
-        5
+    + Header
+
+            Transfer-Encoding: chunked
+            
+    + Body
+    
+            5
 
 ## Counter value stream [/counters/{id}/stream]
 The value stream for this counter
