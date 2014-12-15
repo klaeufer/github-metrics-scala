@@ -1,11 +1,12 @@
 package edu.luc.etl.cs313.scala.clickcounter.service.http
 
+import org.specs2.matcher.JsonMatchers
 import org.specs2.mutable._
 import dispatch._, Defaults._
 
-class HttpSpec extends Specification {
+class HttpSpec extends Specification with JsonMatchers {
 
-  val serviceRoot = "http://private-14b8e-clickcounter.apiary-mock.com/"
+  val serviceRoot = host("private-14b8e-clickcounter.apiary-mock.com")
 
   "The click counter service, with respect to its collection of counters," should {
 
@@ -14,7 +15,12 @@ class HttpSpec extends Specification {
     }
 
     "retrieve an existing counter" in {
-      todo
+      val request = serviceRoot / "counters" / "123"
+      val response = Http(request OK as.String)
+      val counter = response()
+      counter must / ("id" -> haveClass[String])
+      counter must / ("value" -> (be_>=(0.0) ^^ ((_: String).toDouble)))
+      counter must / ("state" -> beOneOf("empty", "counting", "full"))
     }
 
     "delete an existing counter" in {
@@ -29,7 +35,10 @@ class HttpSpec extends Specification {
     }
 
     "refuse to decrement the counter" in {
-      todo
+      val request = serviceRoot / "counters" / "123" / "decrement"
+      val response = Http(request.POST)
+      val status = response().getStatusCode
+      status must beOneOf(200, 409)
     }
 
     "reset the counter" in {
@@ -37,7 +46,8 @@ class HttpSpec extends Specification {
     }
 
     "return the counter value" in {
-      val response = Http(url(serviceRoot + "counters/123/value") OK as.String)
+      val request = serviceRoot / "counters" / "123" / "value"
+      val response = Http(request OK as.String)
       response().toInt === 3
     }
 
