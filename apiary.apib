@@ -25,11 +25,11 @@ A single Counter object with all its details
 + Response 200 (application/json)
     + Header
     
-            Content-Length: 50
+            Content-Length: 48
 
     + Body
 
-            { "id": "123", "value": "3", "state": "counting" }
+            { "id": "123", "value": 3, "state": "counting" }
 
 ### Delete a counter [DELETE]
 + Response 204
@@ -47,11 +47,11 @@ The resource for incrementing this counter
 + Response 200 (application/json)
     + Header
     
-            Content-Length: 46
+            Content-Length: 44
 
     + Body
 
-            { "id": "123", "value": "5", "state": "full" }
+            { "id": "123", "value": 5, "state": "full" }
 
 ## Counter decrement [/counters/{id}/decrement]
 The resource for decrementing this counter
@@ -63,11 +63,11 @@ The resource for decrementing this counter
 + Response 409 (application/json)
     + Header
     
-            Content-Length: 47
+            Content-Length: 45
 
     + Body
 
-            { "id": "123", "value": "0", "state": "empty" }
+            { "id": "123", "value": 0, "state": "empty" }
 
 ## Counter reset [/counters/{id}/reset]
 The resource for resetting this counter
@@ -79,11 +79,11 @@ The resource for resetting this counter
 + Response 200 (application/json)
     + Header
     
-            Content-Length: 47
+            Content-Length: 45
 
     + Body
 
-            { "id": "123", "value": "0", "state": "empty" }
+            { "id": "123", "value": 0, "state": "empty" }
 
 ## Counter value [/counters/{id}/value]
 The current value of this counter
