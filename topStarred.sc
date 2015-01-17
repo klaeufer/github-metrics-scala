@@ -13,7 +13,6 @@ val homeDir = System.getProperty("user.home")
 val accessToken = scala.io.Source.fromFile(homeDir + "/.githubAccessToken").getLines.next()
 val client = Client(accessToken)
 
-
 val repos = client.repositories.all
 
 // FIXME seems limited to 100 repos
@@ -32,6 +31,5 @@ val topRepos = (for {
   JObject(rFields) = client.repo(owner, repo)(as.json4s.Json)() // avoid Json4s deep traversal
   ("stargazers_count", JInt(count)) <- rFields
 } yield (owner, repo, count)).sortBy(_._3).reverse.take(numberOfTopReposToShow)
-
 
 topRepos.foreach(println(_))
