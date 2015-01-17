@@ -1,9 +1,17 @@
+# GitHub Metrics
+
 This is intended to become an software engineering metrics importer
-for projects on GitHub using the GitHub API.
+for projects on GitHub using the [GitHub API](https://developer.github.com).
 
-The test uses these libraries:
+## Prerequisites
 
-- [Dispatch](http://dispatch.databinder.net)
-  as an HTTP client for interacting with the server mock.
-- [specs2](http://etorreborre.github.io/specs2)
-  for its nice matchers (especially JSON).
+1. Create personal GitHub access token from
+   https://github.com/settings/applications
+   (select scope: public_repo).
+
+1. For security reasons, store in local file ~/.githubAccessToken.
+
+## References
+
+- Hubcat: https://github.com/softprops/hubcat
+- Json4s API doc: https://github.com/json4s/json4s

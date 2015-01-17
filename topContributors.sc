@@ -2,18 +2,8 @@ import hubcat._
 import dispatch._
 import org.json4s._
 
-/*
- * List the contributors to a specific repository in order of contributions
- * (example from hubcat readme).
- *
- * Prerequisites
- *
- * 1) create personal GitHub access token from https://github.com/settings/applications
- *    (select scope: public_repo)
- * 2) for security reasons, store in local file ~/.githubAccessToken
- *
- * Json4s API doc: https://github.com/json4s/json4s
- */
+// List the contributors to a specific repository in order of contributions
+//(example from hubcat readme).
 
 // specify project
 
